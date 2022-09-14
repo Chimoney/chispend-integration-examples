@@ -14,6 +14,7 @@ function App() {
   const memoizedXAppStyle = useMemo(() => xAppStyle, [xAppStyle]);
   const memoizedPrimaryColor = useMemo(() => primaryColor, [primaryColor]);
   const memoizedMaxAmountInUSD = useMemo(() => maxAmountInUSD, [maxAmountInUSD]);
+  const chiSpendUrl = useMemo(() => `https://chispend-staging.onrender.com/?cSContext=${memoizedSpendContext}${memoizedPrimaryColor ? `&primaryColor=${memoizedPrimaryColor.substring(1)}` : ""}${memoizedXAppStyle ? `&xAppStyle=${memoizedXAppStyle}` : ""}${memoizedMaxAmountInUSD ? `&maxAmountInUSD=${memoizedMaxAmountInUSD}` : ""}`, [memoizedMaxAmountInUSD, memoizedXAppStyle, memoizedPrimaryColor, memoizedSpendContext]); 
 
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
@@ -33,7 +34,7 @@ function App() {
   }
   return (
     <div className={styles.container}>
-      <iframe src={`https://chispend-staging.onrender.com/?cSContext=${memoizedSpendContext}${memoizedPrimaryColor ? `&primaryColor=${memoizedPrimaryColor.substring(1)}` : ""}${memoizedXAppStyle ? `&xAppStyle=${memoizedXAppStyle}` : ""}${memoizedMaxAmountInUSD ? `&maxAmountInUSD=${memoizedMaxAmountInUSD}` : ""}`} style={{ height: "100vh", width: "50%", outline: "none", border: "none" }} title="ChiSpend Widget" />
+      <iframe src={chiSpendUrl} style={{ height: "100vh", width: "50%", outline: "none", border: "none" }} title="ChiSpend Widget" />
       <div>
         <p> Change Spend Context: </p>
         <select onChange={handleChange} value={memoizedSpendContext} name="spendContext">
@@ -59,6 +60,8 @@ function App() {
         }
          <p> Change max amount user can spend in USD: </p>
          <input type="number" name="maxAmountInUSD" onChange={handleChange} />
+         <p> ChiSpend Url </p>
+         <p><b>{chiSpendUrl}</b></p>
       </div>
     </div>
   );
