@@ -70,7 +70,7 @@ input {
   width: 100%;
   height: 100%;
   max-width: 21.875rem;
-  max-height: 33.625rem;
+  height: min-content;
   display: flex;
   flex-direction: column;
   align-items: center;
