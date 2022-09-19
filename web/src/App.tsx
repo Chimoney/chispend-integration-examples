@@ -57,7 +57,7 @@ function App() {
   return (
     <div className={styles.container}>
       <Logo />
-      <p>Easily embed the ChiSpend customisable market place </p>
+      <h4>Easily embed the ChiSpend customisable market place </h4>
       <div className={styles.frame__section}>
         <div>
           <iframe
