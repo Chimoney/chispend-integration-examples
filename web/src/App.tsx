@@ -1,6 +1,8 @@
 import { useMemo, useState } from 'react';
 import _ from 'lodash';
 import styles from './App.module.css';
+import { DeviceFrameset } from 'react-device-frameset';
+import 'react-device-frameset/styles/marvel-devices.min.css'
 import { supportedAppStyles, supportedSpendContexts } from './constants';
 import { Logo } from './assets';
 import { Select, DollarInput } from './components';
@@ -60,7 +62,8 @@ function App() {
       <h4>Easily embed the ChiSpend customisable market place </h4>
       <div className={styles.frame__section}>
         <div>
-          <iframe
+         <DeviceFrameset device="iPhone 8" color="black">
+         <iframe
             src={chiSpendUrl}
             style={{
               height: '100%',
@@ -70,6 +73,7 @@ function App() {
             }}
             title="ChiSpend Widget"
           />
+         </DeviceFrameset>
         </div>
         <div className={styles.customization_widget__container}>
           <h4> Customisation widget</h4>
