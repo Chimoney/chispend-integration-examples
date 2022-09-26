@@ -3,11 +3,13 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import _ from 'lodash';
 import styles from './App.module.css';
 import { DeviceFrameset } from 'react-device-frameset';
-import 'react-device-frameset/styles/marvel-devices.min.css'
+import 'react-device-frameset/styles/marvel-devices.min.css';
+import { useOnClickOutside } from 'usehooks-ts';
 import { supportedAppStyles, supportedSpendContexts } from './constants';
 import { CancelIcon, Logo, Pencil } from './assets';
 import { Select, DollarInput } from './components';
 import { ColorPicker, Copy } from './containers';
+
 
 function App() {
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1024px)' })
@@ -73,6 +75,11 @@ function App() {
     `;
   }, [showMobileControls, isTabletOrMobile]);
 
+  const handleClickOutside = () => {
+    setShowMobileControls(false);
+  }
+
+  useOnClickOutside(controlsRef, handleClickOutside)
 
   return (
     <div className={styles.container}>
