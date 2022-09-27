@@ -81,7 +81,9 @@ function App() {
   }
 
   useEffect(() => {
-    const handleMessage = (e: any) => {
+    const handleMessage = (e: MessageEvent<{
+      paymentLink?: string;
+    }>) => {
       if (spendContext !== 'web') return;
       if (!e.data?.paymentLink) return;
       alert(`Here is the chimoney object for your transaction:\n${JSON.stringify(e.data, null, 2)}`);
