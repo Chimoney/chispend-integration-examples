@@ -13,11 +13,17 @@ p {
   font-weight: 400;
   font-size: 0.875rem;
 }
+span, li {
+  font-weight: 400;
+  font-size: 0.7rem;
+}
 
 h4 {
   font-weight: 600;
   font-size: 1rem;
 }
+
+
 
 /* Component resets */
 button {

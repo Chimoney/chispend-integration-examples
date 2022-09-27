@@ -9,6 +9,7 @@ import { supportedAppStyles, supportedSpendContexts } from './constants';
 import { CancelIcon, Logo, Pencil } from './assets';
 import { Select, DollarInput } from './components';
 import { ColorPicker, Copy } from './containers';
+import { capitalizeFirst } from './util';
 
 
 function App() {
@@ -16,8 +17,8 @@ function App() {
   const [showMobileControls, setShowMobileControls] = useState(!isTabletOrMobile);
   const [spendContext, setSpendContext] = useState('web');
   const [xAppStyle, setXAppTheme] = useState('light');
-  const [primaryColor, setPrimaryColor] = useState('#557FD0');
-  const [maxAmountInUSD, setMaxAmountInUSD] = useState<string>();
+  const [primaryColor, setPrimaryColor] = useState('#670a78');
+  const [maxAmountInUSD, setMaxAmountInUSD] = useState<string>("100");
   const memoizedSpendContext = useMemo(() => spendContext, [spendContext]);
   const memoizedXAppStyle = useMemo(() => xAppStyle, [xAppStyle]);
   const memoizedPrimaryColor = useMemo(() => primaryColor, [primaryColor]);
@@ -27,7 +28,7 @@ function App() {
   );
   const chiSpendUrl = useMemo(
     () =>
-      `https://chispend-staging.onrender.com/?cSContext=${memoizedSpendContext}${memoizedPrimaryColor
+      `https://chispend.com/?cSContext=${memoizedSpendContext}${memoizedPrimaryColor
         ? `&primaryColor=${memoizedPrimaryColor.substring(1)}`
         : ''
       }${memoizedXAppStyle ? `&xAppStyle=${memoizedXAppStyle}` : ''}${memoizedMaxAmountInUSD
@@ -132,18 +133,6 @@ function App() {
           <h4> Customisation widget</h4>
           <hr />
           <div className={styles.controls}>
-            <p> Change Spend Context: </p>
-            <Select
-              onChange={handleChange}
-              value={memoizedSpendContext}
-              name="spendContext"
-            >
-              {supportedSpendContexts.map((context) => (
-                <option value={context} key={context}>
-                  {context}
-                </option>
-              ))}
-            </Select>
             <p> Change App Theme: </p>
             <Select
               onChange={handleChange}
@@ -168,7 +157,19 @@ function App() {
               }}
             />
             <p> Change max amount user can spend in USD: </p>
-            <DollarInput name="maxAmountInUSD" onChange={handleChange} />
+            <DollarInput name="maxAmountInUSD" value={memoizedMaxAmountInUSD} onChange={handleChange} />
+            <p> Change Spend Context: </p>
+            <Select
+              onChange={handleChange}
+              value={memoizedSpendContext}
+              name="spendContext"
+            >
+              {supportedSpendContexts.map((context) => (
+                <option value={context} key={context}>
+                  {capitalizeFirst(context)}
+                </option>
+              ))}
+            </Select>
             <p> ChiSpend Url </p>
             <Copy
               text={chiSpendUrl}
@@ -176,6 +177,10 @@ function App() {
                 alert('Copied customized ChiSpend to clipboard!');
               }}
             />
+            <span><b>NOTES:</b></span>
+            <ul>
+              <li>Spend context is the preferred payment channel/method.</li>
+            </ul>
           </div>
         </div>
       </div>
