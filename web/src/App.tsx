@@ -80,6 +80,19 @@ function App() {
     setShowMobileControls(false);
   }
 
+  useEffect(() => {
+    const handleMessage = (e: any) => {
+      if (spendContext !== 'web') return;
+      if (!e.data?.paymentLink) return;
+      alert(`Here is the chimoney object for your transaction:\n${JSON.stringify(e.data, null, 2)}`);
+    }
+    window.addEventListener("message", handleMessage, false);
+    return () => {
+      window.removeEventListener("message", handleMessage, false);
+    }
+  }, [spendContext]);
+
+
   useOnClickOutside(controlsRef, handleClickOutside)
 
   return (

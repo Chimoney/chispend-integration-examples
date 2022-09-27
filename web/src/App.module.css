@@ -76,7 +76,6 @@ input {
   gap: 3rem;
   align-items: center;
   justify-content: center;
-  height: calc(100vh - 200px);
   width: 100%;
 }
 
