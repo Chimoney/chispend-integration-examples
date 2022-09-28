@@ -174,6 +174,7 @@ function App() {
             <p> Change max amount user can spend in USD: </p>
             <DollarInput name="maxAmountInUSD" value={memoizedMaxAmountInUSD} onChange={handleChange} />
             <p> Change Spend Context: </p>
+            <span>Spend context is the preferred payment channel/method.</span>
             <Select
               onChange={handleChange}
               value={memoizedSpendContext}
@@ -192,10 +193,6 @@ function App() {
                 alert('Copied customized ChiSpend to clipboard!');
               }}
             />
-            <span><b>NOTES:</b></span>
-            <ul>
-              <li>Spend context is the preferred payment channel/method.</li>
-            </ul>
           </div>
         </div>
       </div>
