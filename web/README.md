@@ -1,46 +1,149 @@
-# Getting Started with Create React App
+# ChiSpend integration example (Web)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This demo demostrates how to easily integrate the `ChiSpend` Multiwallet shopping experience in your web application.
 
-## Available Scripts
+## 📸 Screenshots
+![Screenshot of demo](screenshots/demo.png)
 
-In the project directory, you can run:
+<br></br>
+## Installation
 
-### `npm start`
+```
+ https://chispend.com/?cSContext={{YOUR PREFERRED SPEND CONTEXT}}
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Keywords:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- __SpendContext__: This is the payment method the ChiSpend experience should use for checkout. It's that simple! 🚀🚀🚀
 
-### `npm test`
+- __Embed__: The `ChiSpend` experience.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+<br></br>
+## Integrating ChiSpend
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Integrating ChiSpend doesn't require you having any special skill. Yes, It's as easy as dropping an `iframe` in your existing web application!
+For more context:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```html
+ <iframe
+  src="https://chispend.com/?cSContext={{YOUR PREFERRED SPEND CONTEXT}}"
+  title="ChiSpend Widget"
+  >
+```
+___Pretty easy right??? See I told you😁.___
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Customizing ChiSpend:
 
-### `npm run eject`
+Customizing `ChiSpend` is a walk in the park just as installing it is. Infact, you don't need to do anything other than modify the `url` a bit. Simple right? Let's get it:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```html
+ <iframe
+  src="https://chispend.com/?cSContext=evm&primaryColor=eb4034&xAppTheme=light"
+  title="ChiSpend Widget"
+  >
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Customization Options:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- __primaryColor__: Css hex code without the `#` to use as primaryColor for the shopping experience.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- __maxAmountInUSD__: Maximum amount in __USD__(Dollars) a user is allowed to spend in the `Embed`.
+- __cSContext__: The `SpendContext`.
+- __xAppStyle__: The app theme to use in the `ChiSpend` widget.
 
-## Learn More
+### OTHER INFO
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- `xAppStyle`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+We currently support any of these __four(4)__ app themes.
+
+```js
+[
+ 'light',
+ 'dark', 
+ 'moonlight',
+ 'royal'
+]
+```
+
+- `csContext`
+
+We support payments through these methods.
+
+```js
+ [
+ 'valora', 
+ 'evm', 
+ 'mobile',
+ 'web', 
+ 'chimoney_redeem',
+ 'status', 
+ 'metamask',
+ 'walletconnect',
+ 'celo'
+]
+```
+
+Want to enable checkouts on ChiSpend with your [`own wallet`](#ext_wallet)?
+
+<br></br>
+
+### <a name="ext_wallet"></a> **External wallet Integration**
+
+---
+![Image](screenshots/pay_with_wallet.png)
+
+
+<br></br>
+`ChiSpend` provides the `Pay with Wallet` option for the `web SpendContext`, This allows you to __intercept__ the checkout process and manage the payment flow, You can attach a listener to the event posted by the `ChiSpend` widget to get an object which should be sent to the api to finish the payment flow. Before that you can carry out your business specific logic. See the example below:
+
+```js
+ const handleMessage = (e) => {
+      // Don't proceed if there's no payment link.
+      if (!e.data?.paymentLink) return;
+      
+      // Carry out business specific logic (e.g transction charge) and send Chimoney object (i.e e.data) to  ChiConnect.
+      alert(`Here is the chimoney object for your transaction:\n${JSON.stringify(e.data, null, 2)}`);
+    }
+  
+ // Listen for ChiSpend Pay with Wallet event. 
+ window.addEventListener("message", handleMessage, false);
+```
+
+
+<br></br>
+### Sample Chimoney Object for external wallet integration
+
+```json
+{
+    "currency": "USD",
+    "totalDueinUSD": 50.5,
+    "issueID": "abcdefghijkl_50_00000000000000",
+    "amount": 50,
+    "ottData": {},
+    "paymentLink": "https://dash.chimoney.io/pay/?issueID=abcdefghijkl_50_00000000000000",
+    "type": "giftcard"
+}
+```
+
+__Phew that was a easy enough :)__
+
+`Need more help?`
+Shoot an email to us at  [support](mailto:support@chimoney.io). We're more than happy to help you out in building your ChiSpend experience.
+
+## Contributing
+
+See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
+
+## Support
+
+If you're having trouble with the Demo or your integration, please reach out to us at <support@chimoney.io> or come chat with us on Slack.
+
+## ChiConnect API Reference
+
+For external wallet integrations checkout the [ChiConnect API Docs](https://chimoney.readme.io). It should cover all your needs. _Still stuck ?😓 No problems reach [help](mailto:support@chimoney.io)._ 
+
+## License
+
+MIT
