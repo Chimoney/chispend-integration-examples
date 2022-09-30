@@ -3,7 +3,7 @@
 This demo demostrates how to easily integrate the `ChiSpend` Multiwallet shopping experience in your web application.
 
 ## 📸 Screenshots
-![Screenshot of demo](screenshots/demo.png)
+![Screenshot of demo](/screenshots/demo.png)
 
 <br></br>
 ## Installation
@@ -92,7 +92,7 @@ Want to enable checkouts on ChiSpend with your [`own wallet`](#ext_wallet)?
 ### <a name="ext_wallet"></a> **External wallet Integration**
 
 ---
-![Image](screenshots/pay_with_wallet.png)
+![Image](/screenshots/pay_with_wallet.png)
 
 
 <br></br>
