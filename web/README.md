@@ -18,6 +18,8 @@ This demo demostrates how to easily integrate the `ChiSpend` Multiwallet shoppin
 
 - __Embed__: The `ChiSpend` experience.
 
+- __Chimoney Object__: An object to be sent to the api to carry out a payment. `NOTE:` Only necessary for `Pay With Wallet` integration.
+
 
 <br></br>
 ## Integrating ChiSpend
@@ -94,9 +96,19 @@ Want to enable checkouts on ChiSpend with your [`own wallet`](#ext_wallet)?
 ---
 ![Image](/screenshots/pay_with_wallet.png)
 
+- [Get your Api Key](#get_api_key).
+- [Build the experience](#integrate_ext_wallet).
 
 <br></br>
-`ChiSpend` provides the `Pay with Wallet` option for the `web SpendContext`, This allows you to __intercept__ the checkout process and manage the payment flow, You can attach a listener to the event posted by the `ChiSpend` widget to get an object which should be sent to the api to finish the payment flow. Before that you can carry out your business specific logic. See the example below:
+### <a name="get_api_key"></a>  **Get your Api Key**
+
+To integrate your wallet for payments(`Pay With Wallet`), you need an `ApiKey`. This will be needed to send the `Chimoney Object` to the api.
+To get the `Apikey` you need to [book a demo](https://chimoney.io/book-a-demo).
+
+<br></br>
+### <a name="integrate_ext_wallet"></a>  **Build the experience**
+
+`ChiSpend` provides the `Pay with Wallet` option for the `web` SpendContext, This allows you __intercept__ the checkout process and manage the payment flow, You can attach a listener to the event posted by the `ChiSpend` widget to get an object which should be sent to the api to finish the payment flow. Before that you can carry out your business specific logic. See the example below:
 
 ```js
  const handleMessage = (e) => {
