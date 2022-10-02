@@ -20,13 +20,17 @@ A simple utility script for ChiSpend that handles embedding the `ChiSpendWidget`
 ```html
     <script>
         new ChiSpendWidget({
-            insertionPoint: "#chispend-div",
+           // Dom string e.g (.myclass, button) or HTMLElement to insert ChiSpend
+            insertionPoint: "#chispend-div", 
+            // Chispend customizations. See: https://github.com/Chimoney/chispend-integration-examples/tree/main/web#customizing-chispend
             cutomizations: {
                 cSContext: "web",
             },
+           // Called when Pay With Wallet is clicked.
             onData: (data) => {
                 alert(JSON.stringify(data, null , 2));
             },
+            // Called when `ChiSpendWidget` loads.
             onLoad: () => {
                 console.log("Loaded");
             },
