@@ -11,7 +11,6 @@ A simple utility script for ChiSpenp that handles embedding the `ChiSpendWidget`
 <!-- add in site's  <head> -->
 <script
   src="https://unpkg.com/@chimoney/chispend-widget/dist/main.js"
-  async
 ></script>
 ```
 
