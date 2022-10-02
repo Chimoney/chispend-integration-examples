@@ -1,6 +1,6 @@
 ## ChiSpend Widget
 
-A simple utility script for ChiSpenp that handles embedding the `ChiSpendWidget` easily in your application. It also acts as a wrapper for the [`Pay With Wallet`]() functionality and exposes it in a simple `onData` callback.
+A simple utility script for ChiSpend that handles embedding the `ChiSpendWidget` easily in your application. It also acts as a wrapper for the [`Pay With Wallet`]() functionality and exposes it in a simple `onData` callback.
 
 ## Installation
 
