@@ -82,10 +82,10 @@ function App() {
 
   useEffect(() => {
     const handleMessage = (e: MessageEvent<{
-      paymentLink?: string;
+      chimoneys?: any[];
     }>) => {
       if (spendContext !== 'web') return;
-      if (!e.data?.paymentLink) return;
+      if (!e.data?.chimoneys) return;
       alert(`Here is the chimoney object for your transaction:\n${JSON.stringify(e.data, null, 2)}`);
     }
     window.addEventListener("message", handleMessage, false);

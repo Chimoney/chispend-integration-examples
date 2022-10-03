@@ -112,8 +112,8 @@ To get the `Apikey` you need to [book a demo](https://chimoney.io/book-a-demo).
 
 ```js
  const handleMessage = (e) => {
-      // Don't proceed if there's no payment link.
-      if (!e.data?.paymentLink) return;
+      // Don't proceed if there's no chimoney object.
+      if (!e.data?.chimoneys) return;
       
       // Carry out business specific logic (e.g transction charge) and send Chimoney object (i.e e.data) to  ChiConnect.
       alert(`Here is the chimoney object for your transaction:\n${JSON.stringify(e.data, null, 2)}`);
@@ -129,13 +129,27 @@ To get the `Apikey` you need to [book a demo](https://chimoney.io/book-a-demo).
 
 ```json
 {
-    "currency": "USD",
-    "totalDueinUSD": 50.5,
-    "issueID": "abcdefghijkl_50_00000000000000",
-    "amount": 50,
-    "ottData": {},
-    "paymentLink": "https://dash.chimoney.io/pay/?issueID=abcdefghijkl_50_00000000000000",
-    "type": "giftcard"
+  "description": "",
+  "chimoneys": [
+    {
+      "valueInUSD": 50,
+      "enabledToRedeem": [
+        "giftcard"
+      ],
+      "type": "giftcard",
+      "email": "ayomide@chimoney.io",
+      "redeemData": {
+        "countryCode": "US",
+        "productId": 5,
+        "productName": "Amazon US",
+        "recipientCurrencyCode": "USD",
+        "senderCurrencyCode": "USD",
+        "senderFee": 0.5
+      },
+      "spendContext": "web"
+    }
+  ],
+  "miniApp": false
 }
 ```
 
