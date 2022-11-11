@@ -96,7 +96,7 @@ function App() {
         chimoneys?: any[];
       }>
     ) => {
-      if (spendContext !== "web" && spendContext !== "mobile") return;
+      if (spendContext !== "web" && spendContext !== "mobile" && spendContext !== "api_call") return;
       if (!e.data?.chimoneys) return;
       setChimoneyObject(
         `Here is the chimoney object for your transaction:\n${JSON.stringify(
