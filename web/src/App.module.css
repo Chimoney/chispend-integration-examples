@@ -145,13 +145,13 @@ input {
 .frame__mobile{
     display: block;
     width: 100%;
-    height: calc(100vh - 70px);
+    height: 100vh;
     overflow: hidden;
   }
   .controls__mobile {
     display: flex;
     position: absolute;
-    top: 1rem;
+    top: 3.2rem;
     right: 1rem;
     z-index: 999;
     border-radius: 100%;
